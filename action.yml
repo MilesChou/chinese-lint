@@ -1,0 +1,14 @@
+name: Traditional Chinese Lint
+description: Check words for Traditional Chinese document
+branding:
+  icon: check
+  color: gray-dark
+inputs:
+  paths:
+    description: 'Lint paths'
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.paths }}
