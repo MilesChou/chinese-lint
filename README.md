@@ -21,3 +21,13 @@ jobs:
         with:
           paths: .
 ```
+
+# Configuration
+
+Use Config YAML:
+
+```yaml
+typical_errors:
+    - error: 軟件
+      correct: 軟體
+```
