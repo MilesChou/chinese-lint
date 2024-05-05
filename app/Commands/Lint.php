@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class Lint extends Command
 {
-    protected $signature = 'lint {paths?* : Path will to lint} {--config=tclint.example.yaml : Config file path, YAML format}';
+    protected $signature = 'lint {paths?* : Path will to lint} {--config=tclint.yaml : Config file path, YAML format}';
 
     protected $description = 'Lint Traditional Chinese words';
 
