@@ -1,18 +1,25 @@
 {
-    "name": "laravel-zero/laravel-zero",
-    "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
-    "homepage": "https://laravel-zero.com",
+    "name": "mileschou/traditional-chinese-lint",
+    "description": "Traditional Chinese Lint for check words",
+    "keywords": ["lint"],
     "type": "project",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
+        "issues": "https://github.com/MilesChou/traditional-chinese-lint/issues",
+        "source": "https://github.com/MilesChou/traditional-chinese-lint"
     },
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Miles Chou",
+            "email": "jangconan@gmail.com"
+        },
+        {
+            "name": "Ban",
+            "email": "jim515jim@gmail.com"
+        },
+        {
+            "name": "Gson Liang",
+            "email": "yuanyu90221@gmail.com"
         }
     ],
     "require": {
