@@ -17,15 +17,17 @@ class Init extends Command
     {
         $filename = $this->argument('filename');
 
-        if (File::exists($filename) && !$this->option('force')) {
+        if (File::exists($filename) && ! $this->option('force')) {
             $this->error("The file $filename already exists.");
+
             return self::FAILURE;
         }
 
         try {
             File::put($filename, Yaml::dump(Config::DEFAULT_CONFIG, 4));
         } catch (Throwable $e) {
-            $this->error('Config file generate failed. error: ' . $e->getMessage());
+            $this->error('Config file generate failed. error: '.$e->getMessage());
+
             return self::FAILURE;
         }
 
