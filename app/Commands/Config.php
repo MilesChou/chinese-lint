@@ -74,6 +74,10 @@ class Config
                 'error' => '發佈',
                 'correct' => '發布',
             ],
+            [
+                'error' => '您',
+                'correct' => '你',
+            ],
         ],
     ];
 }
