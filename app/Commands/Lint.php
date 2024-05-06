@@ -2,7 +2,9 @@
 
 namespace App\Commands;
 
+use App\ValueObject\LintResult;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Finder\Finder;
@@ -32,15 +34,9 @@ class Lint extends Command
 
         /** @var Collection $result */
         $result = Collection::make($files)
-            ->reduce(function (array $carry, SplFileInfo $file) use ($config) {
-                $lint = $this->lint($file, $config);
-
-                if ($lint->isNotEmpty()) {
-                    $carry[$file->getRelativePathname()] = $lint;
-                }
-
-                return $carry;
-            }, []);
+            ->map(fn(SplFileInfo $file) => $this->lint($file, $config))
+            ->reject(fn(Enumerable $collection) => $collection->isEmpty())
+            ->flatten();
 
         if (empty($result)) {
             $this->line('Pass');
@@ -48,23 +44,18 @@ class Lint extends Command
             return self::SUCCESS;
         }
 
-        Collection::make($result)
-            ->each(
-                fn (Collection $item, $file) => $item->each(function (array $typicalError) use ($file) {
-                    $this->line("檔案 $file 裡發現有問題的詞彙：「{$typicalError['error']}」。可以考慮用「{$typicalError['correct']}」");
-                }),
-            );
+        $result->each(function (Enumerable $item) {
+            $item->each(function (LintResult $lintResult) {
+                $file = "$lintResult->file:$lintResult->line";
+                $error = $lintResult->rule;
+                $correct = $lintResult->correct;
+                $this->line("檔案 $file 裡發現有問題的詞彙：「{$error}」。可以考慮用「{$correct}」");
+                $this->line("- {$lintResult->sourceWithMark()}");
+                $this->line("+ {$lintResult->correctWithMark()}");
+            });
+        });
 
         return self::FAILURE;
-    }
-
-    private function lint(SplFileInfo $file, $config): Collection
-    {
-        $content = $file->getContents();
-
-        return Collection::make($config['typical_errors'])
-            ->filter(fn (array $typicalError) => str_contains($content, $typicalError['error']))
-            ->values();
     }
 
     private function parseConfig(): ?array
@@ -76,5 +67,30 @@ class Lint extends Command
         }
 
         return Yaml::parseFile($file);
+    }
+
+    private function lint(SplFileInfo $file, $config): Enumerable
+    {
+        $content = File::lines($file->getRealPath());
+
+        return Collection::make($config['typical_errors'])
+            ->map(fn(array $typicalError) => $this->lintRule($content, $typicalError, $file->getRelativePathname()))
+            ->reject(fn(Enumerable $collection) => $collection->isEmpty())
+            ->values();
+    }
+
+    private function lintRule(Enumerable $content, array $typicalError, string $file): Enumerable
+    {
+        return $content->filter(fn(string $value) => str_contains($value, $typicalError['error']))
+            ->map(function (string $value, int $key) use ($typicalError, $file) {
+                return new LintResult(
+                    $file,
+                    $key + 1,
+                    $value,
+                    $typicalError['error'],
+                    $typicalError['correct'],
+                );
+            })
+            ->values();
     }
 }
