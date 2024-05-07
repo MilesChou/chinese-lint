@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use App\Configuration\DefaultConfig;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
 use Symfony\Component\Yaml\Yaml;
@@ -24,7 +25,7 @@ class Init extends Command
         }
 
         try {
-            File::put($filename, Yaml::dump(Config::DEFAULT_CONFIG, 4));
+            File::put($filename, Yaml::dump(DefaultConfig::DEFAULT_CONFIG, 4));
         } catch (Throwable $e) {
             $this->error('Config file generate failed. error: '.$e->getMessage());
 

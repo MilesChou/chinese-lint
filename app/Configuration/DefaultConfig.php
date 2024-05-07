@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Commands;
+namespace App\Configuration;
 
-class Config
+readonly class DefaultConfig
 {
     public const DEFAULT_CONFIG = [
         'typical_errors' => [
