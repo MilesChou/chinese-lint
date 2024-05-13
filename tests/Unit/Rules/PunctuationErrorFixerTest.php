@@ -13,14 +13,19 @@ test('Should alert when has wrong words', function () {
     $this->assertTrue($target->lint('這是"錯"的文字'));
 });
 
-test('Should fixed words to correct when error word', function () {
+test('Should fixed \'quotation marks\' to correct when error word', function () {
+    $target = new PunctuationErrorFixer();
+    $this->assertSame('這是「測試」的文字', $target->fix('這是\'測試\'的文字'));
+});
+
+test('Should fixed "double quotation marks"" to correct when error word', function () {
     $target = new PunctuationErrorFixer();
     $this->assertSame('這是「測試」的文字', $target->fix('這是"測試"的文字'));
 });
 
-test('Should fixed words to correct', function () {
+test('Should fixed ‘apostrophe’ to correct when error word', function () {
     $target = new PunctuationErrorFixer();
-    $this->assertSame('這是「測試」的文字', $target->fix('這是「測試」的文字'));
+    $this->assertSame('這是「測試」的文字', $target->fix('這是‘測試’的文字'));
 });
 
 test('Should mark wrong words', function () {
