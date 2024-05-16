@@ -82,7 +82,7 @@ class Lint extends Command
     {
         $content = Collection::make($this->getFileContent($file));
 
-        return Collection::make($config->toArray()['typical_errors'])
+        return Collection::make($config->rules())
             ->map(fn(Rule $typicalError) => $this->lintRule($content, $typicalError, $file->getRelativePathname()))
             ->reject(fn(Enumerable $collection) => $collection->isEmpty())
             ->values();

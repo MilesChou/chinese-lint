@@ -7,11 +7,15 @@ use InvalidArgumentException;
 
 class Config
 {
-    private array $config;
+    private array $rules;
 
     public function __construct(array $config = [])
     {
-        $this->config['typical_errors'] = $this->parseTypicalErrors($config['typical_errors'] ?? []);
+        $this->rules = array_merge(
+            [],
+            $this->parseTypicalErrors($config['typical_errors'] ?? []),
+            $this->parseRules($config['rules'] ?? []),
+        );
     }
 
     private function parseTypicalErrors(array $config): array
@@ -25,8 +29,13 @@ class Config
         }, $config);
     }
 
-    public function toArray(): array
+    public function rules(): array
     {
-        return $this->config;
+        return $this->rules;
+    }
+
+    private function parseRules(array $rules): array
+    {
+        return array_map(fn($rule) => new $rule, $rules);
     }
 }

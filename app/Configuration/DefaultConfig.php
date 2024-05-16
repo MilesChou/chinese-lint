@@ -2,6 +2,8 @@
 
 namespace App\Configuration;
 
+use App\Rules;
+
 readonly class DefaultConfig
 {
     public const DEFAULT_CONFIG = [
@@ -78,6 +80,10 @@ readonly class DefaultConfig
                 'error' => '您',
                 'correct' => '你',
             ],
+        ],
+        'rules' => [
+            Rules\PunctuationErrorFixer::class,
+            Rules\SpaceErrorFixer::class,
         ],
     ];
 }
