@@ -47,7 +47,7 @@ readonly class SpaceErrorFixer implements Fixer
     private function markQuotes(string $line, Marker $marker): ?string
     {
         return preg_replace_callback($this->getRegex(), function ($matches) use ($marker) {
-            return $matches[1] . $marker->wrapSource(' ' . $matches[2] . ' ') . $matches[3];
+            return $matches[1] . $marker->wrapSource($matches[2]) . $matches[3];
         }, $line);
     }
 

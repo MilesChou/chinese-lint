@@ -41,7 +41,7 @@ test('Should mark wrong words', function () {
             return '<source>' . $str . '</source>';
         }
     };
-    $this->assertSame('這是<source> test </source>的文字', $target->markLint('這是test的文字', $marker));
+    $this->assertSame('這是<source>test</source>的文字', $target->markLint('這是test的文字', $marker));
 });
 
 test('Should fixed and mark correct words', function () {
