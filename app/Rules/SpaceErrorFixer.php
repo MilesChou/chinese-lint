@@ -34,7 +34,7 @@ readonly class SpaceErrorFixer implements Fixer
     private function getRegex(): string
     {
         // 取得正則表達式
-        return '/([\p{Han}])([a-zA-Z0-9]+)(?=[\p{Han}])(?![\p{P}\p{S}])/u';
+        return '/([\p{Han}])([a-zA-Z]+)(?=[\p{Han}])(?![\p{P}\p{S}])/u';
     }
 
     private function findQuotes(string $line): ?string

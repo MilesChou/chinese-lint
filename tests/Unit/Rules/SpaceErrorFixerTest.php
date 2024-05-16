@@ -18,19 +18,9 @@ test('Should alert when has wrong words', function () {
     $this->assertTrue($target->lint('這是test的文字'));
 });
 
-test('Should alert when has wrong number', function () {
-    $target = new SpaceErrorFixer();
-    $this->assertTrue($target->lint('這是123的文字'));
-});
-
 test('Should fixed words to correct when error word', function () {
     $target = new SpaceErrorFixer();
     $this->assertSame('這是 test 的文字', $target->fix('這是test的文字'));
-});
-
-test('Should fixed words to correct when error number', function () {
-    $target = new SpaceErrorFixer();
-    $this->assertSame('這是 123 的文字', $target->fix('這是123的文字'));
 });
 
 test('Should fixed words to correct', function () {
