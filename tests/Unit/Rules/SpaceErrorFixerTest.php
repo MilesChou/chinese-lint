@@ -8,6 +8,11 @@ test('Should not alert when no wrong words', function () {
     $this->assertFalse($target->lint('這是 test 的文字'));
 });
 
+test('If there are punctuation marks before or after English words, no warning is required.', function () {
+    $target = new SpaceErrorFixer();
+    $this->assertFalse($target->lint('這是「test」的文字'));
+});
+
 test('Should alert when has wrong words', function () {
     $target = new SpaceErrorFixer();
     $this->assertTrue($target->lint('這是test的文字'));

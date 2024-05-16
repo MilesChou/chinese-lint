@@ -34,34 +34,34 @@ readonly class SpaceErrorFixer implements Fixer
     private function getRegex(): string
     {
         // 取得正則表達式
-        return '/([\p{Han}])([a-zA-Z0-9]+)([\p{Han}])/u';
+        return '/([\p{Han}])([a-zA-Z0-9]+)(?=[\p{Han}])(?![\p{P}\p{S}])/u';
     }
 
     private function findQuotes(string $line): ?string
     {
         return preg_replace_callback($this->getRegex(), function ($matches) {
-            return $matches[1] . $matches[2]. $matches[3];
+            return $matches[1] . $matches[2];
         }, $line);
     }
 
     private function markQuotes(string $line, Marker $marker): ?string
     {
         return preg_replace_callback($this->getRegex(), function ($matches) use ($marker) {
-            return $matches[1] . $marker->wrapSource($matches[2]) . $matches[3];
+            return $matches[1] . $marker->wrapSource($matches[2]);
         }, $line);
     }
 
     private function replaceQuotes(string $line): ?string
     {
         return preg_replace_callback($this->getRegex(), function ($matches) {
-            return $matches[1] . ' ' . $matches[2] . ' ' . $matches[3];
+            return $matches[1] . ' ' . $matches[2] . ' ';
         }, $line);
     }
 
     private function markFixedQuotes(string $line, Marker $marker): ?string
     {
         return preg_replace_callback($this->getRegex(), function ($matches) use ($marker) {
-            return $matches[1] . $marker->wrapCorrect(' ' . $matches[2] . ' ') . $matches[3];
+            return $matches[1] . $marker->wrapCorrect(' ' . $matches[2] . ' ');
         }, $line);
     }
 }
