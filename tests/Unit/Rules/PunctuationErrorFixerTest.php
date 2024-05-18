@@ -6,6 +6,7 @@ use App\Markers\TerminalMarker;
 test('Should not alert when no wrong words', function () {
     $target = new PunctuationErrorFixer();
     $this->assertFalse($target->lint('這是「對」的文字'));
+    $this->assertFalse($target->lint('{{< note title="譯註" >}}'));
 });
 
 test('Should alert when has wrong words', function () {

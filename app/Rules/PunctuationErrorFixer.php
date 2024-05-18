@@ -34,7 +34,7 @@ readonly class PunctuationErrorFixer implements Fixer
     private function getRegex(): string
     {
         // 取得正則表達式
-        return '#([‘’“”\'"〝〞])(?:\p{Han}+|^)([‘’“”\'"〝〞])#u';
+        return '#([‘’“”\'"〝〞])(?:\p{Han}+|^)([‘’“”\'"〝〞])(?! >}})#u';
     }
 
     private function findQuotes(string $line): ?string
