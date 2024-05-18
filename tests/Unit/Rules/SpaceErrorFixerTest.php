@@ -13,9 +13,19 @@ test('If there are punctuation marks before or after English words, no warning i
     $this->assertFalse($target->lint('這是「test」的文字'));
 });
 
+test('Should not alert when has wrong number for date', function () {
+    $target = new SpaceErrorFixer();
+    $this->assertFalse($target->lint('2007年4月26日的部落格文章'));
+});
+
 test('Should alert when has wrong words', function () {
     $target = new SpaceErrorFixer();
     $this->assertTrue($target->lint('這是test的文字'));
+});
+
+test('Should alert when has wrong number', function () {
+    $target = new SpaceErrorFixer();
+    $this->assertTrue($target->lint('這是123的文字'));
 });
 
 test('Should fixed words to correct when error word', function () {
