@@ -8,11 +8,11 @@ class TerminalMarker implements Marker
 {
     public function wrapSource(string $str): string
     {
-        return "<bg=#BB0000>$str</>";
+        return "<bg=red>$str</>";
     }
 
     public function wrapCorrect(string $str): string
     {
-        return "<bg=#007700>$str</>";
+        return "<bg=green>$str</>";
     }
 }
