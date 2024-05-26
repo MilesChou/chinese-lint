@@ -44,7 +44,7 @@ class Lint extends Command
             ->reject(fn(Enumerable $collection) => $collection->isEmpty())
             ->flatten();
 
-        if (empty($result)) {
+        if ($result->isEmpty()) {
             $this->line('Pass');
 
             return self::SUCCESS;
