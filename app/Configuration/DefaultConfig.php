@@ -77,6 +77,18 @@ readonly class DefaultConfig
                 'correct' => '發布',
             ],
             [
+                'error' => '添加',
+                'correct' => '新增',
+            ],
+            [
+                'error' => '創建',
+                'correct' => '建立',
+            ],
+            [
+                'error' => '生成',
+                'correct' => '產生',
+            ],
+            [
                 'error' => '您',
                 'correct' => '你',
             ],
