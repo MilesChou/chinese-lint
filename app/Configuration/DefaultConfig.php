@@ -92,6 +92,22 @@ readonly class DefaultConfig
                 'error' => '您',
                 'correct' => '你',
             ],
+            [
+                'error' => '遠程',
+                'correct' => '遠端',
+            ],
+            [
+                'error' => '響應',
+                'correct' => '回應',
+            ],
+            [
+                'error' => '批量',
+                'correct' => '批次',
+            ],
+            [
+                'error' => '創建',
+                'correct' => '建立',
+            ],
         ],
         'rules' => [
             Rules\PunctuationErrorFixer::class,
