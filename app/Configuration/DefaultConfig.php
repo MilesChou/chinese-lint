@@ -109,8 +109,8 @@ readonly class DefaultConfig
                 'correct' => '建立',
             ],
             [
-                'error' => '編程',
-                'correct' => '開發',
+                'error' => '極限編程',
+                'correct' => '極限開發',
             ],
             [
                 'error' => '建構',
