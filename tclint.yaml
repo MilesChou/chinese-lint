@@ -53,6 +53,30 @@ typical_errors:
     -
         error: 您
         correct: 你
+    -
+        error: 遠程
+        correct: 遠端
+    -
+        error: 響應
+        correct: 回應
+    -
+        error: 批量
+        correct: 批次
+    -
+        error: 創建
+        correct: 建立
+    -
+        error: 極限編程
+        correct: 極限開發
+    -
+        error: 建構
+        correct: 建置
+    -
+        error: 構建
+        correct: 建置
+    -
+        error: 項目
+        correct: 專案
 rules:
     - App\Rules\PunctuationErrorFixer
     - App\Rules\SpaceErrorFixer
