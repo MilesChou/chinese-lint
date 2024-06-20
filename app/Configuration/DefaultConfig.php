@@ -108,6 +108,22 @@ readonly class DefaultConfig
                 'error' => '創建',
                 'correct' => '建立',
             ],
+            [
+                'error' => '編程',
+                'correct' => '開發',
+            ],
+            [
+                'error' => '建構',
+                'correct' => '建置',
+            ],
+            [
+                'error' => '構建',
+                'correct' => '建置',
+            ],
+            [
+                'error' => '項目',
+                'correct' => '專案',
+            ],
         ],
         'rules' => [
             Rules\PunctuationErrorFixer::class,
