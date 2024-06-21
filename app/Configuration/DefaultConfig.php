@@ -120,10 +120,6 @@ readonly class DefaultConfig
                 'error' => '構建',
                 'correct' => '建置',
             ],
-            [
-                'error' => '項目',
-                'correct' => '專案',
-            ],
         ],
         'rules' => [
             Rules\PunctuationErrorFixer::class,

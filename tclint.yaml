@@ -74,9 +74,6 @@ typical_errors:
     -
         error: 構建
         correct: 建置
-    -
-        error: 項目
-        correct: 專案
 rules:
     - App\Rules\PunctuationErrorFixer
     - App\Rules\SpaceErrorFixer
